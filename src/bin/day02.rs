@@ -1,4 +1,3 @@
-use advent_of_code_2022::helper::read_data;
 use std::collections::HashMap;
 
 fn main() {
@@ -9,7 +8,7 @@ fn main() {
     ]);
     let score_mapping = HashMap::from([("X", 1), ("Y", 2), ("Z", 3)]);
     let scores = (6, 3, 0);
-    let data = read_data("day02_data.txt").expect("cannot get data from file");
+    let data = include_str!("./day02_data.txt");
     let data: Vec<_> = data.lines().collect();
     let data: Vec<_> = data
         .iter()

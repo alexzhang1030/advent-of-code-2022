@@ -1,22 +1,15 @@
-use advent_of_code_2022::helper::read_data;
+use itertools::Itertools;
 
 fn main() {
-    let data = read_data("day01_data.txt").expect("error: cannot get data from file");
-    let data: Vec<_> = data.lines().collect();
-    let mut elf: Vec<i32> = Vec::new();
-    let mut elves: Vec<i32> = Vec::new();
+    let data = include_str!("./day01_data.txt")
+        .lines()
+        .group_by(|item| item.is_empty());
 
-    for item in data {
-        let str = item.trim();
-        if str.is_empty() {
-            elves.push(elf.iter().sum());
-            elf.clear();
-        } else {
-            elf.push(str.parse::<i32>().expect("cannot parse to i32"));
-        }
-    }
+    let calories: Vec<_> = data
+        .into_iter()
+        .map(|(_, c)| c.filter_map(|c| c.parse::<i64>().ok()))
+        .map(|c| c.sum::<i64>())
+        .collect();
 
-    let result = elves.iter().max().expect("cannot find max value");
-
-    println!("{}", result)
+    println!("{:?}", calories.into_iter().max().expect("cannot get"))
 }
