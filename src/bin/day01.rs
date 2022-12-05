@@ -1,16 +1,7 @@
-use std::env::current_dir;
-use std::fs::read_to_string;
-use std::path::Path;
-
-fn read_data() -> Result<String, Box<dyn std::error::Error>> {
-    let dir = current_dir()?;
-    let path = dir.join(Path::new("src/bin/day01_data.txt"));
-    let result = read_to_string(path)?;
-    Ok(result)
-}
+use advent_of_code_2022::helper::read_data;
 
 fn main() {
-    let data = read_data().expect("error: cannot get data from file");
+    let data = read_data("day01_data.txt").expect("error: cannot get data from file");
     let data: Vec<_> = data.lines().collect();
     let mut elf: Vec<i32> = Vec::new();
     let mut elves: Vec<i32> = Vec::new();
