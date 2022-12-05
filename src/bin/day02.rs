@@ -7,7 +7,7 @@ fn main() {
         ("B", ("Y", "X", "Z")),
         ("C", ("Z", "Y", "X")),
     ]);
-    let me_mapping = HashMap::from([("X", 1), ("Y", 2), ("Z", 3)]);
+    let score_mapping = HashMap::from([("X", 1), ("Y", 2), ("Z", 3)]);
     let scores = (6, 3, 0);
     let data = read_data("day02_data.txt").expect("cannot get data from file");
     let data: Vec<_> = data.lines().collect();
@@ -21,7 +21,7 @@ fn main() {
         let (opponent, me) = (item[0], item[1]);
         let (draw, defeat, beat) = mapping.get(opponent).expect("cannot find mapping");
         let (win_score, draw_score, defeat_score) = scores;
-        let score = me_mapping.get(me).expect("cannot get score");
+        let score = score_mapping.get(me).expect("cannot get score");
 
         if me.eq(*draw) {
             all_score += draw_score;
